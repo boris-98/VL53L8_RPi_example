@@ -36,10 +36,6 @@ uint8_t RdByte(
 		return status;
 	}
 
-	//readVal = wiringPiI2CReadReg8(p_platform->fd, (int)RegisterAdress);
-	//if (readVal == (int)(*p_value))
-	//	status = 0;
-
 	return 0;
 }
 
@@ -60,10 +56,6 @@ uint8_t WrByte(
 		perror("Failed to write to the I2C bus");
 		return status;
 	}
-
-
-//	if (wiringPiI2CWriteReg8(p_platform->fd, (int)RegisterAdress, value) != -1)
-//		status = 0;
 
 	return 0;
 }
@@ -104,40 +96,9 @@ uint8_t WrMulti(
 			RegisterAdress += chunk_size;
 		}
 
-		
-	/*	unsigned char buffer[2];
-		buffer[0] = RegisterAdress >> 8;
-		buffer[1] = RegisterAdress & 0xFF;
-
-		if (write(p_platform->fd, buffer, 2) != 2)
-		{
-			perror("Failed to write register address to the i2c bus.");
-			return status;
-		}
-		
-		uint32_t remaining_bytes = size;
-		uint32_t offset = 0;
-		int chunk_size;
-
-		printf("size parameter: %d\n", size);
-
-		while (remaining_bytes > 0)
-		{
-			chunk_size = remaining_bytes > 8192 ? 8192 : remaining_bytes;
-			printf("chunk_size: %d, remaining_bytes: %d\n", chunk_size, remaining_bytes);
-
-			if (write(p_platform->fd, p_values + offset, chunk_size) != chunk_size)
-			{
-				perror("Failed to write to the i2c bus.");
-				return status;
-			}
-			remaining_bytes -= chunk_size;
-			offset += chunk_size;
-		}*/
 	}
 	else
 	{
-	// BELOW IS THE OK METHOD, BUT THE MAX I2C WRITE SIZE IS LIMITED TO 8192
 		unsigned char buffer[size + 2];
 		buffer[0] = RegisterAdress >> 8;
 		buffer[1] = RegisterAdress & 0xFF;
@@ -178,8 +139,6 @@ uint8_t RdMulti(
 		return status;
 	}
 
-	/* Need to be implemented by customer. This function returns 0 if OK */
-	
 	return 0;
 }
 
