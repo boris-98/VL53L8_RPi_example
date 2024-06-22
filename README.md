@@ -4,7 +4,7 @@ This repository contains a C implementation for using the ST VL53L8 sensor, incl
 
 ### Files
 
-- `main.c`: Contains the main function and basic ranging example.
+- `main.c`: Contains the main function and basic ranging example (modified Example_1_ranging_basic from ST).
 - `platform.c` & `platform.h`: Platform-specific implementations for I2C communication.
 - `vl53l8cx_api.c` & `vl53l8cx_api.h`: ST ULD driver files.
 - `Makefile`: Makefile to compile the project & clean build files.
